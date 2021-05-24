@@ -9,7 +9,9 @@
                   method: :delete,
                   data: { confirm: "Are you sure?" } %></li>
 </ul>
-
+<% if @article.image.attached? %>
+  <%= image_tag @article.image %>
+<% end %>
 <h2>Comments</h2>
 <%= render @article.comments %>
 

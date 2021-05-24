@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 <%= form_with model: article do |form| %>
-  <div>
+  <div class="form-group">
     <%= form.label :title %><br>
     <%= form.text_field :title %>
     <% article.errors.full_messages_for(:title).each do |message| %>
@@ -8,19 +8,27 @@
     <% end %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :body %><br>
     <%= form.text_area :body %><br>
     <% article.errors.full_messages_for(:body).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
-  <div>
+  <div class="form-group">
     <%= form.label :status %><br>
     <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
   </div>
 
-  <div>
+  <div class="form-group">
+    <% if article.image.attached? %>
+      <%= image_tag image.image, style: "width: 250px; display: block" %>
+    <% end %>
+
+    <%= form.label :image %>
+    <%= form.file_field :image, class: "form-control" %>
+  </div>
+  <div class="form-group">
     <%= form.submit %>
   </div>
 <% end %>
