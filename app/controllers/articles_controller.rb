@@ -4,6 +4,12 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all.paginate(page: params[:page], per_page: 1)
+    @q = Article.ransack(params[:q])
+  end
+
+  def search
+    @q = Article.ransack(params[:q])
+    @articles = @q.result
   end
 
   def show

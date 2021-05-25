@@ -1,0 +1,6 @@
+<%= render 'articles/search_form', q: @q  %>
+<% if @articles.empty? %>
+  <p>There are not articles here with this title </p>
+<% else %>
+  <%= render 'articles/article_display', articles: @articles  %>
+<% end %>
